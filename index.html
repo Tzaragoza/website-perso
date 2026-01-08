@@ -1,105 +1,131 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Your Name — CV</title>
-  <meta name="description" content="CV and research metrics for Your Name" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Thomas Zaragoza — CV</title>
+    <meta name="description" content="CV and research metrics for Thomas Zaragoza." />
+    <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Chart.js (simple + responsive) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- Chart.js (simple + responsive) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="container header-grid">
-      <div>
-        <h1>Your Name</h1>
-        <p class="muted">PhD Student — Computer Science</p>
-        <div class="links">
-          <a href="mailto:you@email.com">you@email.com</a>
-          <span class="dot">·</span>
-          <a href="https://github.com/youruser" target="_blank" rel="noreferrer">GitHub</a>
-          <span class="dot">·</span>
-          <a href="https://www.linkedin.com/in/youruser" target="_blank" rel="noreferrer">LinkedIn</a>
-          <span class="dot">·</span>
-          <a href="cv.pdf">CV (PDF)</a>
+    <header class="site-header">
+        <div class="container header-grid">
+
+            <!-- Identity block (photo + name + links + menu) -->
+            <div class="identity">
+                <div class="identity-top">
+                    <div class="avatar-frame">
+                        <!-- Put your picture at assets/img/profile.jpg -->
+                        <img src="assets/img/profile.jpg" alt="Portrait of Thomas Zaragoza" loading="lazy" />
+                    </div>
+
+                    <div class="identity-text">
+                        <h1>Thomas ZARAGOZA</h1>
+                        <p class="muted">PhD Student — Computer Science</p>
+                        <div class="links">
+                            <a href="mailto:thomas.zaragoza@univ-pau.fr">thomas.zaragoza@univ-pau.fr</a>
+                            <span class="dot">·</span>
+                            <a href="https://github.com/Tzaragoza" target="_blank" rel="noreferrer">GitHub</a>
+                            <span class="dot">·</span>
+                            <a href="https://www.linkedin.com/in/thomas-zaragoza-bab653160" target="_blank" rel="noreferrer">LinkedIn</a>
+                            <span class="dot">·</span>
+                            <!-- CV is in assets/ -->
+                            <a href="assets/CV_ZARAGOZA_Thomas.pdf">CV (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs / menu -->
+                <nav class="tabs" aria-label="Site navigation">
+                    <a class="tab active" href="index.html">Latest</a>
+                    <a class="tab" href="publications.html">Publications</a>
+                    <a class="tab" href="talks.html">Talks</a>
+                    <a class="tab" href="projects.html">Projects</a>
+                    <a class="tab" href="about.html">About</a>
+                </nav>
+            </div>
+
+            <!-- Stats -->
+            <div class="stat-cards">
+                <div class="card">
+                    <div class="card-label">Total citations</div>
+                    <div class="card-value" id="statTotalCites">—</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Papers tracked</div>
+                    <div class="card-value" id="statPaperCount">—</div>
+                </div>
+                <div class="card">
+                    <div class="card-label">Last update</div>
+                    <div class="card-value" id="statUpdatedAt">—</div>
+                </div>
+            </div>
+
         </div>
-      </div>
+    </header>
 
-      <div class="stat-cards">
-        <div class="card">
-          <div class="card-label">Total citations</div>
-          <div class="card-value" id="statTotalCites">—</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Papers tracked</div>
-          <div class="card-value" id="statPaperCount">—</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Last update</div>
-          <div class="card-value" id="statUpdatedAt">—</div>
-        </div>
-      </div>
-    </div>
-  </header>
+    <main class="container">
+        <section class="panel">
+            <h2>About</h2>
+            <p>
+                One tight paragraph: what you do, what you build, and the measurable outcomes.
+                Delete anything you can’t defend.
+            </p>
+        </section>
 
-  <main class="container">
-    <section class="panel">
-      <h2>About</h2>
-      <p>
-        One tight paragraph: what you do, what you build, and the measurable outcomes.
-        Delete anything you can’t defend.
-      </p>
-    </section>
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Research metrics</h2>
+                <p class="muted small">Computed from OpenAlex/Semantic Scholar → cached daily in this repo.</p>
+            </div>
 
-    <section class="panel">
-      <div class="panel-head">
-        <h2>Research metrics</h2>
-        <p class="muted small">Computed from OpenAlex/Semantic Scholar → cached daily in this repo.</p>
-      </div>
+            <div class="grid-2">
+                <div class="chart-card">
+                    <div class="chart-title">Citations by year</div>
+                    <div class="chart-wrap"><canvas id="chartCitationsByYear"></canvas></div>
+                </div>
 
-      <div class="grid-2">
-        <div class="chart-card">
-          <div class="chart-title">Citations by year</div>
-          <div class="chart-wrap"><canvas id="chartCitationsByYear"></canvas></div>
-        </div>
+                <div class="chart-card">
+                    <div class="chart-title">Top papers by citations</div>
+                    <div class="chart-wrap"><canvas id="chartTopPapers"></canvas></div>
+                </div>
+            </div>
+        </section>
 
-        <div class="chart-card">
-          <div class="chart-title">Top papers by citations</div>
-          <div class="chart-wrap"><canvas id="chartTopPapers"></canvas></div>
-        </div>
-      </div>
-    </section>
+        <section class="panel">
+            <div class="panel-head row">
+                <div>
+                    <h2>Publications</h2>
+                    <p class="muted small">Sort by citations, year, or title.</p>
+                </div>
+                <div class="controls">
+                    <label class="small muted" for="sortSelect">Sort</label>
+                    <select id="sortSelect">
+                        <option value="citations_desc">Citations (desc)</option>
+                        <option value="year_desc">Year (desc)</option>
+                        <option value="year_asc">Year (asc)</option>
+                        <option value="title_asc">Title (A→Z)</option>
+                    </select>
+                </div>
+            </div>
 
-    <section class="panel">
-      <div class="panel-head row">
-        <div>
-          <h2>Publications</h2>
-          <p class="muted small">Sort by citations, year, or title.</p>
-        </div>
-        <div class="controls">
-          <label class="small muted" for="sortSelect">Sort</label>
-          <select id="sortSelect">
-            <option value="citations_desc">Citations (desc)</option>
-            <option value="year_desc">Year (desc)</option>
-            <option value="year_asc">Year (asc)</option>
-            <option value="title_asc">Title (A→Z)</option>
-          </select>
-        </div>
-      </div>
+            <div id="pubsTableWrap"></div>
+        </section>
 
-      <div id="pubsTableWrap"></div>
-    </section>
+        <footer class="footer">
+            <p class="muted small">
+                Built on GitHub Pages. Metrics updated automatically via GitHub Actions.
+            </p>
+        </footer>
+    </main>
 
-    <footer class="footer">
-      <p class="muted small">
-        Built on GitHub Pages. Metrics updated automatically via GitHub Actions.
-      </p>
-    </footer>
-  </main>
-
-  <script type="module" src="assets/js/app.js"></script>
+    <!-- If you want auto-active tabs across pages, add nav.js and include it here:
+    <script src="assets/js/nav.js"></script>
+    -->
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
